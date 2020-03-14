@@ -8,13 +8,13 @@ This repository was created to test API Rest service based on Account CRUD and t
 
 1. Create:
 * We can create and Account that could be started with the Treasury property to false or true (Only on creation). 
-2.- Retrieve: 
+2. Retrieve: 
 * We can retrieve all accounts and only one filtered by Id. 
-3.- Update: 
+3. Update: 
 * We can update the Account, changing it's properties but not Treasure property as we explained on step 1.
-4.- Delete: 
+4. Delete: 
 * We can delete an Account.
-5.- Transactions: 
+5. Transactions: 
 * We can do transactions of balance from an Account to another Account. 
 * We have to controll if Account profile Treasury property allows to set balance to negative values. 
 
