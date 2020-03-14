@@ -37,7 +37,7 @@ This repository was created to test API Rest service based on Account CRUD and t
 
 ##### Steps on branch: account_service #####
 * Service Crud created. Tests for ServiveImpl
-* 
+* Created method to controll transactions between accounts with all restrictions allowed and not allowed.
 
 ### How to run Application: ###
 
