@@ -1,4 +1,4 @@
-package io.accountservice.test.model;
+package io.accountservice.test.model.entity;
 
 import java.io.Serializable;
 

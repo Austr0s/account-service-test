@@ -7,6 +7,12 @@ import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 
+
+/**
+ * OpenAPI3 configuration class
+ * 
+ * @author Austr0s
+ */
 @Configuration
 public class OpenApiConfig {
 	@Bean
