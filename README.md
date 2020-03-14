@@ -35,6 +35,10 @@ This repository was created to test API Rest service based on Account CRUD and t
 ##### On this commit for branch: swagger_accounttable_account_entity #####
 * Creation of Entity Model and Repository with Tests.
 
+##### Steps on branch: account_service #####
+* Service Crud created. Tests for ServiveImpl
+* 
+
 ### How to run Application: ###
 
 ##### Run tests. Go to root project path and run next command line: #####

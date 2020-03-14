@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import io.accountservice.test.model.Account;
+import io.accountservice.test.model.entity.Account;
 
 @SpringBootTest
 @DisplayName("TEST Spring @Autowired AccountRepository")
