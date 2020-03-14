@@ -29,6 +29,18 @@ This repository was created to test API Rest service based on Account CRUD and t
 * Hateoas for uri response references on each request.
 * Junit 5 and Mockito to Tests.
 
+### Resolution Steps: ###
+
+##### First I created the configuration of embedded database. #####
+##### On this commit for branch: swagger_accounttable_account_entity #####
+* Creation of Entity Model and Repository with Tests.
+
+### How to run Application: ###
+
+##### Run tests. Go to root project path and run next command line: #####
+* mvn test
+
+
 #### Reference Documentation ####
 For further reference, please consider the following sections:
 
@@ -41,13 +53,3 @@ For further reference, please consider the following sections:
 * [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/2.2.5.RELEASE/reference/htmlsingle/#production-ready)
 
 
-### Resolution Steps: ###
-
-##### First I created the configuration of embedded database. #####
-##### On this commit for branch: swagger_accounttable_account_entity #####
-* Creation of Entity Model and Repository with Tests.
-
-### How to run Application: ###
-
-##### Run tests. Go to root project path and run next command line: #####
-* mvn test
