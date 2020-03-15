@@ -1,0 +1,1187 @@
+{
+	"info": {
+		"_postman_id": "ac68fccb-8730-4dc0-a7ca-6da6fd958d17",
+		"name": "ACCOUNT-SERVICE-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET One Account ById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET One Account ById",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 22:42:39 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"TOMASA PINO MENDEZ\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "GET All Accounts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET All Accounts",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 22:54:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"_embedded\": {\n        \"accountList\": [\n            {\n                \"id\": 1,\n                \"name\": \"TOMASA PINO MENDEZ\",\n                \"currency\": \"EUR\",\n                \"balance\": -5000,\n                \"treasury\": true,\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:9090/api/v1/accounts/1\"\n                    }\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"SORAYA MORAL MENA\",\n                \"currency\": \"EUR\",\n                \"balance\": -1500,\n                \"treasury\": true,\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:9090/api/v1/accounts/2\"\n                    }\n                }\n            },\n            {\n                \"id\": 3,\n                \"name\": \"JULIA ROMERA ROBLES\",\n                \"currency\": \"EUR\",\n                \"balance\": 3000,\n                \"treasury\": false,\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:9090/api/v1/accounts/3\"\n                    }\n                }\n            },\n            {\n                \"id\": 4,\n                \"name\": \"DAMIAN HEREDIA PASTOR\",\n                \"currency\": \"EUR\",\n                \"balance\": 4000,\n                \"treasury\": false,\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:9090/api/v1/accounts/4\"\n                    }\n                }\n            },\n            {\n                \"id\": 5,\n                \"name\": \"MARIA AMPARO LIN LAZARO\",\n                \"currency\": \"EUR\",\n                \"balance\": 5000,\n                \"treasury\": false,\n                \"_links\": {\n                    \"self\": {\n                        \"href\": \"http://localhost:9090/api/v1/accounts/5\"\n                    }\n                }\n            }\n        ]\n    },\n    \"_links\": {\n        \"self\": {\n            \"href\": \"http://localhost:9090/api/v1/accounts\"\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Create Account with Error.",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"LAIA CEREZO PLAZA\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts"
+					]
+				},
+				"description": " Treasury not allowed to create an account with negative balance."
+			},
+			"response": [
+				{
+					"name": "POST Create Account with Error.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"LAIA CEREZO PLAZA\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:02:32 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timeStamp\": \"2020-03-14T23:02:32.750+0000\",\n    \"message\": \"Error Create: Account profile Treasury not allowed to create Account with negative Balande. Operation fails\",\n    \"details\": \"uri=/api/v1/accounts\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Create Account with Correct Treasury.",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"LAIA CEREZO PLAZA\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST Create Account with Correct Treasury.",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"LAIA CEREZO PLAZA\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:04:07 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 6,\n    \"name\": \"LAIA CEREZO PLAZA\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT Update Account with Error.",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000.0,\n    \"treasury\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"2"
+					]
+				},
+				"description": "Error expected because param id is different of body id."
+			},
+			"response": [
+				{
+					"name": "PUT Update Account with Error.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000.0,\n    \"treasury\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"2"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:07:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timeStamp\": \"2020-03-14T23:07:04.035+0000\",\n    \"message\": \"Update Account Id: 2 isn't the same of Account to update: 1\",\n    \"details\": \"uri=/api/v1/accounts/2\"\n}"
+				}
+			]
+		},
+		{
+			"name": "PUT Update Account",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000.0,\n    \"treasury\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"1"
+					]
+				},
+				"description": "Error expected because param id is different of body id."
+			},
+			"response": [
+				{
+					"name": "PUT Update Account with Error.",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000.0,\n    \"treasury\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"2"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:07:04 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timeStamp\": \"2020-03-14T23:07:04.035+0000\",\n    \"message\": \"Update Account Id: 2 isn't the same of Account to update: 1\",\n    \"details\": \"uri=/api/v1/accounts/2\"\n}"
+				},
+				{
+					"name": "PUT Update Account",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000.0,\n    \"treasury\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"1"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:08:30 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 1,\n    \"name\": \"MARIA CARME VALLEJO ARCE\",\n    \"currency\": \"EUR\",\n    \"balance\": -5000,\n    \"treasury\": true\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE Delete Account with Error.",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 5000,\n    \"treasury\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"4"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DELETE Delete Account with Error.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 5000,\n    \"treasury\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"4"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:22:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timeStamp\": \"2020-03-14T23:22:15.308+0000\",\n    \"message\": \"Delete Account Id: 4 isn't the same of Account to delete: 5\",\n    \"details\": \"uri=/api/v1/accounts/4\"\n}"
+				}
+			]
+		},
+		{
+			"name": "DELETE Delete Account",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 5000,\n    \"treasury\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"5"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "DELETE Delete Account with Error.",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 5000,\n    \"treasury\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"4"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:22:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "close"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"timeStamp\": \"2020-03-14T23:22:15.308+0000\",\n    \"message\": \"Delete Account Id: 4 isn't the same of Account to delete: 5\",\n    \"details\": \"uri=/api/v1/accounts/4\"\n}"
+				}
+			]
+		},
+		{
+			"name": "POST Transaction between Accounts",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"origin\": 5,\n    \"payee\": 2,\n    \"amountToTransfer\": 1500\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9090/api/v1/accounts/5/payee/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"5",
+						"payee",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "POST Transaction between Accounts",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"origin\": {\n        \"id\": 5,\n        \"name\": \"MARIA AMPARO LIN LAZARO\",\n        \"currency\": \"EUR\",\n        \"balance\": 5000,\n        \"treasury\": false\n    },\n    \"payee\": {\n        \"id\": 2,\n        \"name\": \"SORAYA MORAL MENA\",\n        \"currency\": \"EUR\",\n        \"balance\": -1500,\n        \"treasury\": true\n    },\n    \"amountToTransfer\": 1500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/5/transactions/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"5",
+								"transactions",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sat, 14 Mar 2020 23:59:58 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 3500,\n    \"treasury\": false,\n    \"hibernateLazyInitializer\": {}\n}"
+				},
+				{
+					"name": "POST Transaction between Accounts",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"origin\": 5,\n    \"payee\": 2,\n    \"amountToTransfer\": 1500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:9090/api/v1/accounts/5/payee/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"accounts",
+								"5",
+								"payee",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/hal+json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Mar 2020 00:57:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 5,\n    \"name\": \"MARIA AMPARO LIN LAZARO\",\n    \"currency\": \"EUR\",\n    \"balance\": 3500,\n    \"treasury\": false\n}"
+				}
+			]
+		},
+		{
+			"name": "GET OpenAPI3 api-docs",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9090/api/v1/api-docs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"api-docs"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET OpenAPI3 api-docs",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/api-docs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"api-docs"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4466"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Mar 2020 01:00:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"openapi\": \"3.0.1\",\n    \"info\": {\n        \"title\": \"Account Application API\",\n        \"description\": \"This is a sample Spring Boot RESTfull service using springdoc-openapi and OpenAPI 3.\"\n    },\n    \"servers\": [\n        {\n            \"url\": \"http://localhost:9090/api/v1\",\n            \"description\": \"Generated server url\"\n        }\n    ],\n    \"tags\": [\n        {\n            \"name\": \"Account\",\n            \"description\": \"The Account API\"\n        }\n    ],\n    \"paths\": {\n        \"/accounts/{id}\": {\n            \"get\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"View an Account retrieved by Id\",\n                \"description\": \"Account\",\n                \"operationId\": \"getOne\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"put\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Update an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"update\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"delete\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Delete an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"delete\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"204\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"*/*\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        },\n        \"/accounts/{originId}/payee/{payeeId}\": {\n            \"post\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Transaction between Accounts\",\n                \"description\": \"Account\",\n                \"operationId\": \"transaction\",\n                \"parameters\": [\n                    {\n                        \"name\": \"originId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    },\n                    {\n                        \"name\": \"payeeId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/TransactionOperationDto\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        },\n        \"/accounts\": {\n            \"get\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"View a list of available Accounts\",\n                \"description\": \"Collection of Accounts\",\n                \"operationId\": \"getAll\",\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"post\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Create an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"create\",\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"201\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"components\": {\n        \"schemas\": {\n            \"Account\": {\n                \"required\": [\n                    \"balance\",\n                    \"currency\",\n                    \"id\",\n                    \"name\",\n                    \"treasury\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                    \"id\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Unique identifier of the Account.\",\n                        \"format\": \"int64\",\n                        \"example\": 1\n                    },\n                    \"name\": {\n                        \"type\": \"string\",\n                        \"description\": \"Name of the Account.\",\n                        \"example\": \"Jessica Abigail\"\n                    },\n                    \"currency\": {\n                        \"type\": \"string\",\n                        \"description\": \"Currency's type of the Account.\",\n                        \"example\": \"EUR\"\n                    },\n                    \"balance\": {\n                        \"type\": \"number\",\n                        \"description\": \"Balance of the Account.\",\n                        \"format\": \"double\",\n                        \"example\": 5000\n                    },\n                    \"treasury\": {\n                        \"type\": \"boolean\",\n                        \"description\": \"Treasury status type of the Account.\",\n                        \"example\": true\n                    },\n                    \"links\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"$ref\": \"#/components/schemas/Link\"\n                        }\n                    }\n                }\n            },\n            \"Link\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"rel\": {\n                        \"type\": \"string\"\n                    },\n                    \"href\": {\n                        \"type\": \"string\"\n                    },\n                    \"hreflang\": {\n                        \"type\": \"string\"\n                    },\n                    \"media\": {\n                        \"type\": \"string\"\n                    },\n                    \"title\": {\n                        \"type\": \"string\"\n                    },\n                    \"type\": {\n                        \"type\": \"string\"\n                    },\n                    \"deprecation\": {\n                        \"type\": \"string\"\n                    },\n                    \"profile\": {\n                        \"type\": \"string\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\"\n                    }\n                }\n            },\n            \"TransactionOperationDto\": {\n                \"required\": [\n                    \"amountToTransfer\",\n                    \"origin\",\n                    \"payee\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                    \"origin\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Origin Account of Transaction.\",\n                        \"format\": \"int64\"\n                    },\n                    \"payee\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Payee Account of Transaction.\",\n                        \"format\": \"int64\"\n                    },\n                    \"amountToTransfer\": {\n                        \"type\": \"number\",\n                        \"description\": \"Amount to transfer from Origin Account to Payee Account\",\n                        \"format\": \"double\",\n                        \"example\": 1500\n                    },\n                    \"links\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"$ref\": \"#/components/schemas/Link\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}"
+				},
+				{
+					"name": "GET OpenAPI3 api-docs",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:9090/api/v1/api-docs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"api-docs"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "4466"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Mar 2020 01:00:05 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"openapi\": \"3.0.1\",\n    \"info\": {\n        \"title\": \"Account Application API\",\n        \"description\": \"This is a sample Spring Boot RESTfull service using springdoc-openapi and OpenAPI 3.\"\n    },\n    \"servers\": [\n        {\n            \"url\": \"http://localhost:9090/api/v1\",\n            \"description\": \"Generated server url\"\n        }\n    ],\n    \"tags\": [\n        {\n            \"name\": \"Account\",\n            \"description\": \"The Account API\"\n        }\n    ],\n    \"paths\": {\n        \"/accounts/{id}\": {\n            \"get\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"View an Account retrieved by Id\",\n                \"description\": \"Account\",\n                \"operationId\": \"getOne\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"put\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Update an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"update\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"delete\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Delete an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"delete\",\n                \"parameters\": [\n                    {\n                        \"name\": \"id\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"204\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"*/*\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        },\n        \"/accounts/{originId}/payee/{payeeId}\": {\n            \"post\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Transaction between Accounts\",\n                \"description\": \"Account\",\n                \"operationId\": \"transaction\",\n                \"parameters\": [\n                    {\n                        \"name\": \"originId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    },\n                    {\n                        \"name\": \"payeeId\",\n                        \"in\": \"path\",\n                        \"required\": true,\n                        \"schema\": {\n                            \"type\": \"integer\",\n                            \"format\": \"int64\"\n                        }\n                    }\n                ],\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/TransactionOperationDto\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        },\n        \"/accounts\": {\n            \"get\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"View a list of available Accounts\",\n                \"description\": \"Collection of Accounts\",\n                \"operationId\": \"getAll\",\n                \"responses\": {\n                    \"200\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            },\n            \"post\": {\n                \"tags\": [\n                    \"Account\"\n                ],\n                \"summary\": \"Create an Account\",\n                \"description\": \"Account\",\n                \"operationId\": \"create\",\n                \"requestBody\": {\n                    \"content\": {\n                        \"application/json\": {\n                            \"schema\": {\n                                \"$ref\": \"#/components/schemas/Account\"\n                            }\n                        }\n                    }\n                },\n                \"responses\": {\n                    \"201\": {\n                        \"description\": \"successful operation\",\n                        \"content\": {\n                            \"application/hal+json\": {\n                                \"schema\": {\n                                    \"type\": \"array\",\n                                    \"items\": {\n                                        \"$ref\": \"#/components/schemas/Account\"\n                                    }\n                                }\n                            }\n                        }\n                    }\n                }\n            }\n        }\n    },\n    \"components\": {\n        \"schemas\": {\n            \"Account\": {\n                \"required\": [\n                    \"balance\",\n                    \"currency\",\n                    \"id\",\n                    \"name\",\n                    \"treasury\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                    \"id\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Unique identifier of the Account.\",\n                        \"format\": \"int64\",\n                        \"example\": 1\n                    },\n                    \"name\": {\n                        \"type\": \"string\",\n                        \"description\": \"Name of the Account.\",\n                        \"example\": \"Jessica Abigail\"\n                    },\n                    \"currency\": {\n                        \"type\": \"string\",\n                        \"description\": \"Currency's type of the Account.\",\n                        \"example\": \"EUR\"\n                    },\n                    \"balance\": {\n                        \"type\": \"number\",\n                        \"description\": \"Balance of the Account.\",\n                        \"format\": \"double\",\n                        \"example\": 5000\n                    },\n                    \"treasury\": {\n                        \"type\": \"boolean\",\n                        \"description\": \"Treasury status type of the Account.\",\n                        \"example\": true\n                    },\n                    \"links\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"$ref\": \"#/components/schemas/Link\"\n                        }\n                    }\n                }\n            },\n            \"Link\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"rel\": {\n                        \"type\": \"string\"\n                    },\n                    \"href\": {\n                        \"type\": \"string\"\n                    },\n                    \"hreflang\": {\n                        \"type\": \"string\"\n                    },\n                    \"media\": {\n                        \"type\": \"string\"\n                    },\n                    \"title\": {\n                        \"type\": \"string\"\n                    },\n                    \"type\": {\n                        \"type\": \"string\"\n                    },\n                    \"deprecation\": {\n                        \"type\": \"string\"\n                    },\n                    \"profile\": {\n                        \"type\": \"string\"\n                    },\n                    \"name\": {\n                        \"type\": \"string\"\n                    }\n                }\n            },\n            \"TransactionOperationDto\": {\n                \"required\": [\n                    \"amountToTransfer\",\n                    \"origin\",\n                    \"payee\"\n                ],\n                \"type\": \"object\",\n                \"properties\": {\n                    \"origin\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Origin Account of Transaction.\",\n                        \"format\": \"int64\"\n                    },\n                    \"payee\": {\n                        \"type\": \"integer\",\n                        \"description\": \"Payee Account of Transaction.\",\n                        \"format\": \"int64\"\n                    },\n                    \"amountToTransfer\": {\n                        \"type\": \"number\",\n                        \"description\": \"Amount to transfer from Origin Account to Payee Account\",\n                        \"format\": \"double\",\n                        \"example\": 1500\n                    },\n                    \"links\": {\n                        \"type\": \"array\",\n                        \"items\": {\n                            \"$ref\": \"#/components/schemas/Link\"\n                        }\n                    }\n                }\n            }\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "GET Swagger2 with OpenAPI3",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/api/v1/swagger-ui.html",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"api",
+						"v1",
+						"swagger-ui.html"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "GET Swagger2 with OpenAPI3",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:9090/api/v1/swagger-ui.html",
+							"host": [
+								"localhost"
+							],
+							"port": "9090",
+							"path": [
+								"api",
+								"v1",
+								"swagger-ui.html"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Method"
+						},
+						{
+							"key": "Vary",
+							"value": "Access-Control-Request-Headers"
+						},
+						{
+							"key": "Last-Modified",
+							"value": "Sat, 14 Mar 2020 13:51:38 GMT"
+						},
+						{
+							"key": "Accept-Ranges",
+							"value": "bytes"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html"
+						},
+						{
+							"key": "Content-Length",
+							"value": "1424"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 15 Mar 2020 00:59:42 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "<!-- HTML for static distribution bundle build -->\n<!DOCTYPE html>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"UTF-8\">\n        <title>Swagger UI</title>\n        <link rel=\"stylesheet\" type=\"text/css\" href=\"./swagger-ui.css\" >\n        <link rel=\"icon\" type=\"image/png\" href=\"./favicon-32x32.png\" sizes=\"32x32\" />\n        <link rel=\"icon\" type=\"image/png\" href=\"./favicon-16x16.png\" sizes=\"16x16\" />\n        <style>\n      html\n      {\n        box-sizing: border-box;\n        overflow: -moz-scrollbars-vertical;\n        overflow-y: scroll;\n      }\n\n      *,\n      *:before,\n      *:after\n      {\n        box-sizing: inherit;\n      }\n\n      body\n      {\n        margin:0;\n        background: #fafafa;\n      }\n    </style>\n    </head>\n    <body>\n        <div id=\"swagger-ui\"></div>\n        <script src=\"./swagger-ui-bundle.js\"> </script>\n        <script src=\"./swagger-ui-standalone-preset.js\"> </script>\n        <script>\n    window.onload = function() {\n      // Begin Swagger UI call region\n      const ui = SwaggerUIBundle({\n        url: \"https://petstore.swagger.io/v2/swagger.json\",\n        dom_id: '#swagger-ui',\n        deepLinking: true,\n        presets: [\n          SwaggerUIBundle.presets.apis,\n          SwaggerUIStandalonePreset\n        ],\n        plugins: [\n          SwaggerUIBundle.plugins.DownloadUrl\n        ],\n        layout: \"StandaloneLayout\"\n      })\n      // End Swagger UI call region\n\n      window.ui = ui\n    }\n  </script>\n    </body>\n</html>"
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

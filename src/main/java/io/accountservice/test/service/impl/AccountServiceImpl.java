@@ -109,17 +109,17 @@ public class AccountServiceImpl implements AccountService {
 	 */
 	@Override
 	public Optional<Account> transference(@NonNull TransactionOperationDto transaction) throws CustomException {
+		Account origin = repository.getOne(transaction.getOrigin());
 
-		validateTreasuryNotChanged(transaction.getOrigin());
-		validateTreasuryNegativeValid(transaction.getOrigin(), transaction.getAmountToTransfer());
+		validateTreasuryNotChanged(origin);
+		validateTreasuryNegativeValid(origin, transaction.getAmountToTransfer());
 
-		Account origin = transaction.getOrigin();
 		origin.setBalance(origin.getBalance() - transaction.getAmountToTransfer());
-
-		Account payee = transaction.getPayee();
+		Account payee = repository.getOne(transaction.getPayee());
 		payee.setBalance(payee.getBalance() + transaction.getAmountToTransfer());
 
 		repository.save(payee);
+		repository.flush();
 
 		return Optional.of(repository.save(origin));
 	}
@@ -135,7 +135,7 @@ public class AccountServiceImpl implements AccountService {
 	private void validateTreasuryNegativeValid(Account origin, Double amount) throws CustomException {
 		if (!origin.getTreasury() && calculateTransfer(origin.getBalance(), amount))
 			throw new CustomException(
-					"Error Transfer: Treasury profile doesn't accep negative balance on this profile. Operation fails");
+					"Error Transfer: Treasury profile doesn't accept negative balance on this profile. Operation fails");
 	}
 
 	/**

@@ -246,38 +246,41 @@ public class AccountServiceImplTest {
 	 */
 	@Test
 	public void testTransference() throws CustomException {
-		Long entityId = getRandomLong();
+		Long originId = getRandomLong();
 		Account origin = mock(Account.class);
-		when(origin.getId()).thenReturn(entityId);
+		when(origin.getId()).thenReturn(originId);
 		when(origin.getBalance()).thenReturn(Double.valueOf(5000));
 		when(origin.getCurrency()).thenReturn("EUR");
 		when(origin.getName()).thenReturn(getRandomString());
 		when(origin.getTreasury()).thenReturn(Boolean.FALSE);
 
+		Long payeeId = getRandomLong();
 		Account payee = mock(Account.class);
-		when(payee.getId()).thenReturn(entityId);
+		when(payee.getId()).thenReturn(payeeId);
 		when(payee.getBalance()).thenReturn(Double.valueOf(5000));
 		when(payee.getCurrency()).thenReturn("EUR");
 		when(payee.getName()).thenReturn(getRandomString());
 		when(payee.getTreasury()).thenReturn(Boolean.FALSE);
 
 		TransactionOperationDto transaction = mock(TransactionOperationDto.class);
-		when(transaction.getOrigin()).thenReturn(origin);
-		when(transaction.getPayee()).thenReturn(payee);
+		when(transaction.getOrigin()).thenReturn(originId);
+		when(transaction.getPayee()).thenReturn(payeeId);
 		when(transaction.getAmountToTransfer()).thenReturn(Double.valueOf(1500));
 
 		Account expected = mock(Account.class);
 		when(repository.save(origin)).thenReturn(expected);
 		Account payeeExpected = mock(Account.class);
 		when(repository.save(payee)).thenReturn(payeeExpected);
-		when(repository.getOne(entityId)).thenReturn(origin);
+		when(repository.getOne(originId)).thenReturn(origin);
+		when(repository.getOne(payeeId)).thenReturn(payee);
 		
-		Account actual = service.transference(transaction).orElse(expected);
+		Account actual = service.transference(transaction).orElse(origin);
 		assertEquals(expected, actual);
 		
 		verify(repository, times(1)).save(origin);
 		verify(repository, times(1)).save(payee);
-		verify(repository, times(1)).getOne(entityId);
+		verify(repository, times(2)).getOne(originId);
+		verify(repository, times(1)).getOne(payeeId);
 	}
 
 }

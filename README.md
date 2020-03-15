@@ -39,11 +39,18 @@ This repository was created to test API Rest service based on Account CRUD and t
 * Service Crud created. Tests for ServiveImpl
 * Created method to controll transactions between accounts with all restrictions allowed and not allowed.
 
+##### Steps on branch: account_controller_and_api_tests #####
+* Controller created and updated entity with hateoas.
+* Controller response entity to validate Accounts to create, retrieve, update, delete and do transactions between accounts.
+* PostMan requests to tes API with requests body JSON and Path Variable.
+
 ### How to run Application: ###
 
 ##### Run tests. Go to root project path and run next command line: #####
 * mvn test
 
+##### Run Application from console. Go to root project path and run next command line: #####
+* mvn spring-boot:run
 
 #### Reference Documentation ####
 For further reference, please consider the following sections:

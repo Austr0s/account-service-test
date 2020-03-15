@@ -14,6 +14,7 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.hateoas.RepresentationModel;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -42,21 +43,26 @@ public class Account extends RepresentationModel<Account> implements Serializabl
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)
+	@Schema(description = "Unique identifier of the Account.", example = "1", required = true)
 	private Long id;
 
 	@NotNull
 	@Column(name = "NAME", nullable = false)
+	@Schema(description = "Name of the Account.", example = "Jessica Abigail", required = true)
 	private String name;
 
 	@NotNull
 	@Column(name = "CURRENCY", nullable = false)
+	@Schema(description = "Currency's type of the Account.", example = "EUR", required = true)
 	private String currency;
 
 	@NotNull
 	@Column(name = "BALANCE", nullable = false)
+	@Schema(description = "Balance of the Account.", example = "5000", required = true)
 	private Double balance;
 
 	@Column(name = "TREASURY", nullable = true)
+	@Schema(description = "Treasury status type of the Account.", example = "true", required = true)
 	private Boolean treasury;
 
 	@Override

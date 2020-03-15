@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Service
 @NoArgsConstructor
 @ResponseStatus(value =  HttpStatus.BAD_REQUEST)
-public class CustomException extends Exception {
+public class CustomException extends RuntimeException {
 
 	private static final long serialVersionUID = 3444922657550165341L;
 
