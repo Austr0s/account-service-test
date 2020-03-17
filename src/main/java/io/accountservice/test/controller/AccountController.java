@@ -12,6 +12,7 @@ import org.springframework.hateoas.Link;
 import org.springframework.hateoas.config.EnableHypermediaSupport;
 import org.springframework.hateoas.config.EnableHypermediaSupport.HypermediaType;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,6 +60,7 @@ public class AccountController {
 	public ResponseEntity<Account> getOne(@PathVariable(value = "id", required = true) Long id) {
 		Account account = service.findOne(id)
 				.orElseThrow(() -> new AccountNotFoundException("Get One Account Id: " + id + " was not found"));
+		setOneLink(account);
 		return ResponseEntity.ok(account);
 	}
 
@@ -71,11 +73,7 @@ public class AccountController {
 		List<Account> accounts = service.findAll();
 		if (accounts == null)
 			throw new CustomException("The resource you were trying to reach is not found");
-		accounts.stream().forEach(x -> {
-			String accountId = String.format("accounts/%s", x.getId());
-			Link selfLink = linkTo(Account.class).slash(accountId).withSelfRel();
-			x.add(selfLink);
-		});
+		accounts.stream().forEach(x -> setOneLink(x));
 
 		Link link = linkTo(AccountController.class).withSelfRel();
 		CollectionModel<Account> result = new CollectionModel<>(accounts, link);
@@ -90,15 +88,16 @@ public class AccountController {
 	public ResponseEntity<Account> create(@Valid @RequestBody(required = true) Account entity) {
 		Account account = service.create(entity).orElseThrow(
 				() -> new CustomException("Create Account: Some thing went wrong creating" + entity.getName()));
+		setOneLink(account);
 
 		return new ResponseEntity<Account>(account, HttpStatus.CREATED);
 	}
 
 	@Operation(summary = "Update an Account", description = "Account", tags = { "Account" }) //
 	@ApiResponses(value = {
-			@ApiResponse(responseCode = "200", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Account.class)))) })
-	@PutMapping(value = "/{id}", produces = { "application/hal+json" })
-	public ResponseEntity<?> update(@Valid @RequestBody(required = true) Account entity, @PathVariable Long id) {
+			@ApiResponse(responseCode = "202", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Account.class)))) })
+	@PutMapping(value = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Account> update(@PathVariable Long id, @Valid @RequestBody(required = true) Account entity) {
 		if (!entity.getId().equals(id))
 			throw new CustomException(
 					String.format("Update Account Id: %s isn't the same of Account to update: %s", id, entity.getId()));
@@ -107,23 +106,22 @@ public class AccountController {
 				() -> new AccountNotFoundException(String.format("Update Account Id: %s was not found", id)));
 
 		entity.setId(responseAccount.getId());
+		Account updatedAccount = service.update(entity);
+		setOneLink(updatedAccount);
 
-		return ResponseEntity.ok(service.update(entity));
+		return new ResponseEntity<Account>(updatedAccount, HttpStatus.ACCEPTED);
 	}
 
 	@Operation(summary = "Delete an Account", description = "Account", tags = { "Account" }) //
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "204", description = "successful operation", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Account.class)))) })
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@Valid @RequestBody(required = true) Account entity, @PathVariable Long id) {
-		if (!entity.getId().equals(id))
-			throw new CustomException(
-					String.format("Delete Account Id: %s isn't the same of Account to delete: %s", id, entity.getId()));
-
-		service.findOne(id).orElseThrow(
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Account accountToDelete = service.findOne(id).orElseThrow(
 				() -> new AccountNotFoundException(String.format("Delete Account Id: %s was not found", id)));
 
-		service.delete(entity);
+		service.delete(accountToDelete);
+
 		return new ResponseEntity<>(HttpStatus.valueOf(204));
 	}
 
@@ -147,8 +145,15 @@ public class AccountController {
 				.orElseThrow(() -> new CustomException(
 						String.format("Transaction - Origin Account Id: %s  and Payee Id: %s. Something went wrong.",
 								originId, payeeId)));
+		setOneLink(responseAccountOrigin);
 
 		return ResponseEntity.ok(responseAccountOrigin);
+	}
+
+	private void setOneLink(Account account) {
+		String accountId = String.format("accounts/%s", account.getId());
+		Link selfLink = linkTo(Account.class).slash(accountId).withSelfRel();
+		account.add(selfLink);
 	}
 
 }
