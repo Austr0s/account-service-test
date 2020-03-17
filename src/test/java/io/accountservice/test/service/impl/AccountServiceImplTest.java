@@ -19,6 +19,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import io.accountservice.test.exception.CustomException;
+import io.accountservice.test.exception.account.AccountNotFoundException;
 import io.accountservice.test.model.dto.TransactionOperationDto;
 import io.accountservice.test.model.entity.Account;
 import io.accountservice.test.repository.AccountRepository;
@@ -182,7 +183,7 @@ public class AccountServiceImplTest {
 
 		Account expected = mock(Account.class);
 		when(repository.save(entity)).thenReturn(expected);
-		when(repository.getOne(entityId)).thenReturn(expected);
+		when(repository.findById(entityId)).thenReturn(Optional.of(expected));
 
 		Account updated = mock(Account.class);
 		when(repository.save(entity)).thenReturn(updated);
@@ -190,7 +191,7 @@ public class AccountServiceImplTest {
 		assertEquals(updated, actual);
 
 		verify(repository, times(1)).save(entity);
-		verify(repository, times(1)).getOne(entityId);
+		verify(repository, times(1)).findById(entityId);
 
 	}
 
@@ -217,8 +218,8 @@ public class AccountServiceImplTest {
 		when(entity.getTreasury()).thenReturn(Boolean.TRUE);
 
 		assertThatThrownBy(() -> service.update(entity)) //
-				.isInstanceOf(CustomException.class) //
-				.hasMessage("Error: Treasury value changed. Operation fails") //
+				.isInstanceOf(AccountNotFoundException.class) //
+				.hasMessage(String.format("Update Account Id: %s was not found", entityId)) //
 				.hasNoCause();
 	}
 

@@ -14,6 +14,8 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.hateoas.RepresentationModel;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +31,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-@AllArgsConstructor
+@AllArgsConstructor(onConstructor = @__(@JsonCreator(mode = JsonCreator.Mode.PROPERTIES)))
 @NoArgsConstructor
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @EqualsAndHashCode(callSuper = false, of = "id")
@@ -39,7 +41,7 @@ import lombok.Setter;
 public class Account extends RepresentationModel<Account> implements Serializable {
 
 	private static final long serialVersionUID = 1501960596815168782L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID", nullable = false)

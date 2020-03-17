@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import io.accountservice.test.exception.CustomException;
+import io.accountservice.test.exception.account.AccountNotFoundException;
 import io.accountservice.test.model.dto.TransactionOperationDto;
 import io.accountservice.test.model.entity.Account;
 import io.accountservice.test.repository.AccountRepository;
@@ -83,7 +84,13 @@ public class AccountServiceImpl implements AccountService {
 	 */
 	@Override
 	public Account update(Account entity) throws CustomException {
-		validateTreasuryNotChanged(entity);
+		Account actual = findOne(entity.getId()).orElseThrow(() -> new AccountNotFoundException(
+				String.format("Update Account Id: %s was not found", entity.getId())));
+
+		if (actual != null && !entity.getTreasury().equals(actual.getTreasury()))
+			throw new CustomException("Error: Treasury value changed. Operation fails");
+		entity.setId(actual.getId());
+		
 		return repository.save(entity);
 	}
 

@@ -44,6 +44,10 @@ This repository was created to test API Rest service based on Account CRUD and t
 * Controller response entity to validate Accounts to create, retrieve, update, delete and do transactions between accounts.
 * PostMan requests to tes API with requests body JSON and Path Variable.
 
+##### Steps on branch: controllers_test_and_pom_xml #####
+* Controller's Test created to test this layer.
+* Solution local pom.xml tracked and pushed on this branch.
+
 ### How to run Application: ###
 
 ##### Run tests. Go to root project path and run next command line: #####
